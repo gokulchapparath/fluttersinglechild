@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -12,7 +13,10 @@ class FirstRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('First Route'),
+        title: Text('First Route',
+        style: TextStyle(color: Colors.black)
+        ),
+        backgroundColor: Colors.amberAccent,
       ),
       body: Center(
         child:  MaterialButton(
@@ -23,9 +27,9 @@ class FirstRoute extends StatelessWidget {
               MaterialPageRoute(builder: (context) =>  Mypage2()),
             );
             },
-                        splashColor: Colors.blueAccent,
+                        splashColor: Colors.blue[50],
                         textColor: Colors.white,
-                        child: Text('Create Account',
+                        child: Text('click here for next page',
                         style:TextStyle(fontSize: 18)),
                         minWidth: 350,
                         height: 50,
@@ -40,16 +44,22 @@ class Mypage2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Second Route"),
-      ),
-     /* body: Center(
-        child: RaisedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: Text('Go back!'),
+        title: Text("Second Route",
+         style: TextStyle(color: Colors.black),
         ),
-      ),*/
+        backgroundColor: Colors.amberAccent,
+      ),
+     body:
+  
+     Container(
+       child: new Image.asset('assets/images/nat.jpg',
+       height:1350,
+       fit: BoxFit.fill,
+       ),
+       
+        
+      ),
+     
     );
   }
 }

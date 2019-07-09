@@ -1,6 +1,11 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
+import 'home.dart';
+import 'otp.dart';
+import 'package:gradient_app_bar/gradient_app_bar.dart';
+
 void main() => runApp(Tests());
 
 class Tests extends StatelessWidget {
@@ -16,6 +21,7 @@ class Tests extends StatelessWidget {
 class Myapp extends StatelessWidget
 {
   Myapp({Key key}):super(key: key);
+ 
   @override
   Widget build(BuildContext context)
   {
@@ -31,12 +37,15 @@ class Myapp extends StatelessWidget
      final FocusNode _phonef = FocusNode();
   
     return new Scaffold(
+      
     //builder:(BuildContext context,BoxConstraints viewportConstraints){
-  appBar: AppBar(
+  appBar: GradientAppBar(
         title: Text('Sign up',
        style: TextStyle(color: Colors.black),),
        bottomOpacity: 1.0,
-       backgroundColor: Colors.white,
+       
+        backgroundColorStart: Colors.red,
+    backgroundColorEnd: Colors.indigo,
       ),
     body:
      
@@ -48,13 +57,17 @@ class Myapp extends StatelessWidget
                
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
+          
           children: <Widget>[
             Container(
+              
                color: Colors.white,
               child:RawMaterialButton(onPressed: null,
-            child:new Icon(Icons.add_a_photo,color: Colors.orange,size: 150,),
-            shape: new CircleBorder(),
-            padding:const EdgeInsets.all(20.0)),
+              child: Image.asset('assets/images/person.jpg',height: 150,width: 150,),
+            //child:new Icon(Icons.add_a_photo,color: Colors.orange,size: 150,),
+            //shape: new CircleBorder(),
+            padding:const EdgeInsets.all(20.0)
+            ),
             ),
           
           Container(
@@ -104,15 +117,19 @@ class Myapp extends StatelessWidget
                      Container(
                         color: Colors.white,
                        child:TextFormField(decoration: InputDecoration(labelText: 'PHONE',alignLabelWithHint: true,hintText: 'eg:9876543210'),
-                      keyboardType: TextInputType.phone,textInputAction: TextInputAction.done,focusNode: _phonef,
+                      keyboardType: TextInputType.phone,textInputAction: TextInputAction.done,focusNode: _phonef,controller: _phone,
                       
                       ),
                      ),
           
                       Container(
                           child:  MaterialButton(
+                            
                         color: Colors.orange,
-                        onPressed: (){},
+                        onPressed: () {Navigator.push(
+        context,
+        new MaterialPageRoute(builder: (context) => new FirstRoute()),
+      );},
                         splashColor: Colors.blueAccent,
                         textColor: Colors.white,
                         child: Text('Create Account',
@@ -126,6 +143,81 @@ class Myapp extends StatelessWidget
                   ),
                   
                 ),
+                 drawer: Drawer(
+                   
+        // Add a ListView to the drawer. This ensures the user can scroll
+        // through the options in the drawer if there isn't enough vertical
+        // space to fit everything.
+        child: ListView(
+          // Important: Remove any padding from the ListView.
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            Center(
+              child: new Image.asset(
+              'assets/images/cat.png',
+               fit: BoxFit.fill,
+               
+            ),
+          
+            ),
+           // DrawerHeader(
+           Center(
+             child: Text("CHILD APP"),
+           )  , 
+              
+              
+          
+              
+            //),
+            
+            ListTile(
+              
+              title: Text('page 1'),
+              onTap: () {
+                Navigator.pop(context);
+
+                Navigator.push(
+        context,
+        new MaterialPageRoute(builder: (context) => new FirstRoute()),
+      );
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                
+              },
+            ),
+            ListTile(
+              title: Text('mypage'),
+              onTap: () {
+                Navigator.pop(context);
+                  Navigator.push(
+        context,
+        new MaterialPageRoute(builder: (context) => new Mypage2()),
+      );
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                
+              },
+            ),
+            ListTile(
+              title: Text('otp'),
+              onTap: () {
+                 Navigator.pop(context);
+                Navigator.push(
+        context,
+        new MaterialPageRoute(builder: (context) => new Otppage()),
+      );
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+              
+              
+              },
+            ),
+          ],
+        ),
+      ),
               
           
             );
