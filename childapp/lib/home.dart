@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'home.dart';
+import 'otp.dart';
+import 'main.dart';
+import 'drawers.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -35,6 +39,7 @@ class FirstRoute extends StatelessWidget {
                         height: 50,
                         ),
       ),
+      drawer: Drawers(),
     );
   }
 }
@@ -43,7 +48,10 @@ class Mypage2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: new Drawers(
+      ),
       appBar: AppBar(
+         
         title: Text("Second Route",
          style: TextStyle(color: Colors.black),
         ),
@@ -53,7 +61,8 @@ class Mypage2 extends StatelessWidget {
   
      Container(
        child: new Image.asset('assets/images/nat.jpg',
-       height:1350,
+       height:double.infinity,
+       width: double.infinity,
        fit: BoxFit.fill,
        ),
        
